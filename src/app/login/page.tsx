@@ -64,13 +64,10 @@ export default function Login() {
           className="mb-4 drop-shadow-xl"
         />
 
-        <h1 className="text-3xl font-bold text-gray-800 mb-2">Estoy contigo</h1>
-        <p className="text-gray-600 mb-8">Tu compañero emocional</p>
-
         {/* ✍️ FORMULARIO */}
         <form onSubmit={handleLogin} className="w-full space-y-4">
           {error && (
-            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm">
+            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-lg text-center shadow-sm animate-fadeIn">
               {error}
             </div>
           )}

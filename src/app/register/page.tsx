@@ -69,10 +69,6 @@ export default function Register() {
           height={400}
           className="mb-4 drop-shadow-xl"
         />
-
-        <h1 className="text-3xl font-bold text-gray-800 mb-2">Estoy contigo</h1>
-        <p className="text-gray-600 mb-8">Únete a tu compañero emocional</p>
-
         {/* ✍️ FORM */}
         <form onSubmit={handleRegister} className="w-full space-y-4">
           {error && (
