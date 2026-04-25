@@ -1,101 +1,81 @@
 "use client";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Register() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const handleRegister = () => {
-    // Simular registro
-    localStorage.setItem("isLoggedIn", "true");
-    router.push("/");
+    setLoading(true);
+    setTimeout(() => {
+      localStorage.setItem("isLoggedIn", "true");
+      router.push("/");
+    }, 1200);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100 flex items-center justify-center p-4">
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-green-200 rounded-full blur-xl"></div>
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-blue-200 rounded-full blur-xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-green-100 rounded-full blur-2xl"></div>
-      </div>
+    <div className="min-h-screen relative flex flex-col items-center justify-center overflow-hidden">
+      {/* 🌿 FONDO */}
+      <div className="absolute inset-0 bg-gradient-to-b from-green-200 via-green-100 to-white" />
 
-      <div className="relative z-10 w-full max-w-md bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-8">
-        {/* Logo */}
-        <div className="text-center mb-8">
-          <Image
-            src="/Estoy contigo.png"
-            alt="Estoy contigo Logo"
-            width={60}
-            height={60}
-            className="mx-auto mb-4 rounded-full"
+      {/* 🌿 EFECTOS */}
+      <div className="absolute w-[600px] h-[600px] bg-green-300 opacity-20 blur-3xl rounded-full top-[-200px] left-[-200px]" />
+      <div className="absolute w-[500px] h-[500px] bg-green-400 opacity-10 blur-3xl rounded-full bottom-[-150px] right-[-150px]" />
+
+      {/* 🌳 OPCIONAL hojas */}
+      <div className="absolute inset-0 opacity-10 bg-[url('/leaves.png')] bg-cover bg-center" />
+
+      {/* 📱 CONTENIDO */}
+      <div className="relative z-10 flex flex-col items-center text-center px-6 pt-16 w-full max-w-sm">
+        {/* 🧠 LOGO GRANDE */}
+        <Image
+          src="/Estoy contigo.png"
+          alt="logo"
+          width={200}
+          height={200}
+          className="mb-6 drop-shadow-xl"
+        />
+
+        {/* ✍️ FORM */}
+        <div className="w-full space-y-4">
+          <input
+            type="text"
+            placeholder="Tu nombre"
+            className="w-full px-4 py-3 rounded-xl bg-white/70 backdrop-blur-md border border-white/30 focus:ring-2 focus:ring-green-300 outline-none"
           />
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">
-            Estoy contigo
-          </h1>
-          <p className="text-gray-600">Únete a tu compañero emocional</p>
-        </div>
 
-        {/* Form */}
-        <div className="space-y-6">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Nombre
-            </label>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="w-full px-4 py-3 rounded-2xl border border-gray-200 focus:border-green-300 focus:outline-none transition-colors"
-              placeholder="Tu nombre"
-            />
-          </div>
+          <input
+            type="email"
+            placeholder="tu@email.com"
+            className="w-full px-4 py-3 rounded-xl bg-white/70 backdrop-blur-md border border-white/30 focus:ring-2 focus:ring-green-300 outline-none"
+          />
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Email
-            </label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 rounded-2xl border border-gray-200 focus:border-green-300 focus:outline-none transition-colors"
-              placeholder="tu@email.com"
-            />
-          </div>
+          <input
+            type="password"
+            placeholder="••••••••"
+            className="w-full px-4 py-3 rounded-xl bg-white/70 backdrop-blur-md border border-white/30 focus:ring-2 focus:ring-green-300 outline-none"
+          />
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Contraseña
-            </label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-3 rounded-2xl border border-gray-200 focus:border-green-300 focus:outline-none transition-colors"
-              placeholder="••••••••"
-            />
-          </div>
-
+          {/* 🔘 BOTÓN */}
           <button
             onClick={handleRegister}
-            className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-2xl transition-colors shadow-lg"
+            className="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-xl font-semibold shadow-xl transition"
           >
-            Crear cuenta
+            {loading ? "Creando..." : "Crear cuenta"}
           </button>
 
-          <div className="text-center">
-            <a
-              href="/login"
-              className="text-green-600 hover:text-green-700 text-sm"
+          {/* 🔗 LOGIN */}
+          <p className="text-sm text-gray-600">
+            ¿Ya tienes cuenta?{" "}
+            <span
+              onClick={() => router.push("/login")}
+              className="text-green-600 cursor-pointer hover:underline"
             >
-              ¿Ya tienes cuenta? Iniciar sesión
-            </a>
-          </div>
+              Iniciar sesión
+            </span>
+          </p>
         </div>
       </div>
     </div>
