@@ -65,9 +65,9 @@ export default function Register() {
         <Image
           src="/Estoy contigo.png"
           alt="logo"
-          width={120}
-          height={120}
-          className="mb-6 drop-shadow-xl"
+          width={400}
+          height={400}
+          className="mb-4 drop-shadow-xl"
         />
 
         <h1 className="text-3xl font-bold text-gray-800 mb-2">Estoy contigo</h1>
