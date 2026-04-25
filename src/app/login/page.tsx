@@ -35,7 +35,7 @@ export default function Login() {
           alt="logo"
           width={400}
           height={400}
-          className="mb-6 drop-shadow-xl animate-pulse"
+          className="mb-4 drop-shadow-xl animate-pulse"
         />
 
         {/* BOTONES */}
