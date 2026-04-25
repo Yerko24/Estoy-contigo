@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Header from "../components/Header";
+import Header from "@/components/Header";
 import BottomNav from "@/components/BottomNav";
 import HomeTab from "@/components/HomeTab";
 import ChatTab from "@/components/ChatTab";
