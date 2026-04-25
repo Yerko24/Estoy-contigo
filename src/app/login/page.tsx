@@ -67,7 +67,7 @@ export default function Login() {
         {/* ✍️ FORMULARIO */}
         <form onSubmit={handleLogin} className="w-full space-y-4">
           {error && (
-            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-lg text-center shadow-sm animate-fadeIn">
+            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-lg">
               {error}
             </div>
           )}
@@ -78,7 +78,7 @@ export default function Login() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="w-full px-4 py-3 rounded-xl bg-white/70 backdrop-blur-md border border-white/30 focus:ring-2 focus:ring-green-300 outline-none"
+            className="w-full px-4 py-3 rounded-xl bg-white/70 backdrop-blur-md border border-white/30 text-black placeholder:text-gray-500 focus:ring-2 focus:ring-green-300 outline-none"
           />
 
           <input
@@ -87,7 +87,7 @@ export default function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="w-full px-4 py-3 rounded-xl bg-white/70 backdrop-blur-md border border-white/30 focus:ring-2 focus:ring-green-300 outline-none"
+            className="w-full px-4 py-3 rounded-xl bg-white/70 backdrop-blur-md border border-white/30 text-black placeholder:text-gray-500 focus:ring-2 focus:ring-green-300 outline-none"
           />
 
           <button
