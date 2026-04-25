@@ -28,14 +28,14 @@ export default function Login() {
       <div className="absolute inset-0 opacity-10 bg-[url('/leaves.png')] bg-cover bg-center" />
 
       {/* 📱 CONTENIDO */}
-      <div className="relative z-10 flex flex-col items-center text-center px-6 -mt-40">
+      <div className="relative z-10 flex flex-col items-center text-center px-6 -mt-100">
         {/* 🧠 LOGO GRANDE */}
         <Image
           src="/Estoy contigo.png"
           alt="logo"
           width={400}
           height={400}
-          className="mb-4 drop-shadow-xl animate-pulse"
+          className="mb-4 drop-shadow-xl"
         />
 
         {/* BOTONES */}
