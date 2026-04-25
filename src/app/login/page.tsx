@@ -28,7 +28,7 @@ export default function Login() {
       <div className="absolute inset-0 opacity-10 bg-[url('/leaves.png')] bg-cover bg-center" />
 
       {/* 📱 CONTENIDO */}
-      <div className="relative z-10 flex flex-col items-center text-center px-6">
+      <div className="relative z-10 flex flex-col items-center text-center px-6 py-8 bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl">
         {/* 🧠 LOGO GRANDE */}
         <Image
           src="/Estoy contigo.png"
@@ -37,12 +37,6 @@ export default function Login() {
           height={400}
           className="mb-6"
         />
-
-        <h1 className="text-4xl font-bold text-gray-800">Estoy contigo</h1>
-
-        <p className="text-green-700 mt-2 text-sm">
-          Aquí para escucharte, aquí para ti 💚
-        </p>
 
         {/* BOTONES */}
         <div className="w-full max-w-xs mt-10 space-y-4">
