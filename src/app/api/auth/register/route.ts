@@ -31,12 +31,17 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: result.error }, { status: 400 });
     }
 
-    const { password: _, ...userWithoutPassword } = result.user;
+    if (!result.user) {
+      return NextResponse.json(
+        { error: "Error interno al crear el usuario" },
+        { status: 500 },
+      );
+    }
 
     return NextResponse.json(
       {
         success: true,
-        user: userWithoutPassword,
+        user: result.user,
         message: "Cuenta creada exitosamente",
       },
       { status: 201 },

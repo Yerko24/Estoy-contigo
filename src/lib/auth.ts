@@ -10,6 +10,8 @@ export interface User {
   createdAt: string;
 }
 
+export type SafeUser = Omit<User, "password">;
+
 const DB_FILE = path.join(process.cwd(), "data", "users.json");
 
 // Asegurar que exista el directorio
@@ -53,7 +55,9 @@ export async function createUser(
   name: string,
   email: string,
   password: string,
-): Promise<{ success: boolean; user?: User; error?: string }> {
+): Promise<
+  { success: false; error: string } | { success: true; user: SafeUser }
+> {
   // Validar email
   if (!email.includes("@")) {
     return { success: false, error: "Email inválido" };
@@ -89,7 +93,14 @@ export async function createUser(
   users.push(newUser);
   writeUsers(users);
 
-  return { success: true, user: { ...newUser, password: "***" } };
+  const safeUser: SafeUser = {
+    id: newUser.id,
+    name: newUser.name,
+    email: newUser.email,
+    createdAt: newUser.createdAt,
+  };
+
+  return { success: true, user: safeUser };
 }
 
 // Validar credenciales
