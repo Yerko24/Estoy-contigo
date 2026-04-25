@@ -20,9 +20,12 @@ export default function Login() {
       {/* 🌿 FONDO NATURAL */}
       <div className="absolute inset-0 bg-gradient-to-b from-green-200 via-green-100 to-white" />
 
-      {/* 🌿 EFECTO HOJAS / MANCHAS */}
+      {/* 🌿 EFECTO HOJAS / MANCHAS / Arboles paisaje al rededor del logo */}
       <div className="absolute w-[600px] h-[600px] bg-green-300 opacity-20 blur-3xl rounded-full top-[-200px] left-[-200px]" />
       <div className="absolute w-[500px] h-[500px] bg-green-400 opacity-10 blur-3xl rounded-full bottom-[-150px] right-[-150px]" />
+      <div className="absolute w-[700px] h-[700px] bg-green-200 opacity-15 blur-3xl rounded-full top-[-250px] right-[-250px]" />
+      <div className="absolute w-[400px] h-[400px] bg-green-300 opacity-20 blur-3xl rounded-full bottom-[-200px] left-[-200px]" />
+      <div className="absolute w-[300px] h-[300px] bg-green-400 opacity-10 blur-3xl rounded-full top-[-150px] left-[-150px]" />
 
       {/* 🌳 (opcional) overlay tipo naturaleza */}
       <div className="absolute inset-0 opacity-10 bg-[url('/leaves.png')] bg-cover bg-center" />
