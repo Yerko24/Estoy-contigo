@@ -24,7 +24,7 @@ export default function InputBox({
   const emotions = ["😞", "😐", "🙂", "😄"];
 
   return (
-    <div className="bg-white border-t border-gray-200 p-4">
+    <div className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 p-4 transition-colors duration-300">
       {/* Selector emocional opcional */}
       {onEmotionSelect && (
         <div className="flex gap-2 mb-3 justify-center">
@@ -32,7 +32,7 @@ export default function InputBox({
             <button
               key={emoji}
               onClick={() => onEmotionSelect(emoji)}
-              className="text-2xl hover:scale-110 transition-transform p-2 rounded-full hover:bg-gray-100"
+              className="text-2xl hover:scale-110 transition-transform p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
             >
               {emoji}
             </button>
@@ -41,7 +41,7 @@ export default function InputBox({
       )}
       <div className="flex gap-3 items-end">
         <input
-          className="flex-1 px-4 py-3 rounded-2xl border border-gray-200 focus:border-green-300 focus:outline-none transition-colors bg-gray-50"
+          className="flex-1 px-4 py-3 rounded-2xl border border-gray-200 dark:border-gray-600 focus:border-green-300 dark:focus:border-green-500 focus:outline-none transition-colors bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
           placeholder="Escribe lo que sientes..."
           value={input}
           onChange={(e) => setInput(e.target.value)}

@@ -39,8 +39,8 @@ export default function HomeTab() {
   return (
     <div className="max-w-md mx-auto space-y-6">
       {/* Estado emocional */}
-      <div className="bg-white rounded-3xl p-6 shadow-lg">
-        <h2 className="text-xl font-semibold text-gray-800 mb-4">
+      <div className="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-lg transition-colors duration-300">
+        <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">
           ¿Cómo te sientes hoy?
         </h2>
         <EmotionSelector
@@ -48,22 +48,22 @@ export default function HomeTab() {
           onSelect={setSelectedEmotion}
         />
         {selectedEmotion && (
-          <p className="mt-4 text-gray-600">
+          <p className="mt-4 text-gray-600 dark:text-gray-400">
             Gracias por compartir cómo te sientes. {selectedEmotion}
           </p>
         )}
       </div>
 
       {/* Herramientas */}
-      <div className="bg-white rounded-3xl p-6 shadow-lg">
-        <h2 className="text-xl font-semibold text-gray-800 mb-4">
+      <div className="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-lg transition-colors duration-300">
+        <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">
           Herramientas
         </h2>
         <div className="grid grid-cols-1 gap-4">
           {tools.map((tool, index) => (
             <div
               key={index}
-              className="flex items-center p-4 bg-gray-50 rounded-2xl hover:bg-gray-100 transition-colors cursor-pointer"
+              className="flex items-center p-4 bg-gray-50 dark:bg-gray-700 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-300 cursor-pointer"
             >
               <div
                 className={`w-12 h-12 rounded-xl ${tool.color} flex items-center justify-center text-2xl mr-4`}
@@ -71,8 +71,12 @@ export default function HomeTab() {
                 {tool.icon}
               </div>
               <div>
-                <h3 className="font-medium text-gray-800">{tool.title}</h3>
-                <p className="text-sm text-gray-600">{tool.description}</p>
+                <h3 className="font-medium text-gray-800 dark:text-gray-100">
+                  {tool.title}
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  {tool.description}
+                </p>
               </div>
             </div>
           ))}
@@ -80,20 +84,24 @@ export default function HomeTab() {
       </div>
 
       {/* Historial reciente */}
-      <div className="bg-white rounded-3xl p-6 shadow-lg">
-        <h2 className="text-xl font-semibold text-gray-800 mb-4">
+      <div className="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-lg transition-colors duration-300">
+        <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">
           Historial reciente
         </h2>
         <div className="space-y-3">
           {recentEntries.map((entry, index) => (
             <div
               key={index}
-              className="flex items-center p-3 bg-gray-50 rounded-xl"
+              className="flex items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-xl transition-colors duration-300"
             >
               <span className="text-2xl mr-3">{entry.emotion}</span>
               <div className="flex-1">
-                <p className="text-sm text-gray-800">{entry.text}</p>
-                <p className="text-xs text-gray-500">{entry.date}</p>
+                <p className="text-sm text-gray-800 dark:text-gray-100">
+                  {entry.text}
+                </p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">
+                  {entry.date}
+                </p>
               </div>
             </div>
           ))}
