@@ -6,10 +6,10 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { name, email, password, confirmPassword } = body;
 
-    // Validaciones
-    if (!name || !email || !password) {
+    // Validaciones obligatorias
+    if (!name?.trim() || !email?.trim() || !password || !confirmPassword) {
       return NextResponse.json(
-        { error: "Todos los campos son requeridos" },
+        { error: "Todos los campos son obligatorios" },
         { status: 400 },
       );
     }
@@ -21,21 +21,30 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Crear usuario
-    const result = await createUser(name, email, password);
+    const result = await createUser(
+      name.trim(),
+      email.trim().toLowerCase(),
+      password,
+    );
 
     if (!result.success) {
       return NextResponse.json({ error: result.error }, { status: 400 });
     }
 
+    const { password: _, ...userWithoutPassword } = result.user;
+
     return NextResponse.json(
-      { success: true, message: "Cuenta creada exitosamente" },
+      {
+        success: true,
+        user: userWithoutPassword,
+        message: "Cuenta creada exitosamente",
+      },
       { status: 201 },
     );
   } catch (error) {
     console.error("Register error:", error);
     return NextResponse.json(
-      { error: "Error en el registro" },
+      { error: "Error interno en el servidor" },
       { status: 500 },
     );
   }

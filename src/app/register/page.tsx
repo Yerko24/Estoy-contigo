@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 
 export default function Register() {
   const router = useRouter();
@@ -13,7 +13,7 @@ export default function Register() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  const handleRegister = async (e: React.FormEvent) => {
+  const handleRegister = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
     setSuccess("");
@@ -33,12 +33,16 @@ export default function Register() {
         return;
       }
 
-      setSuccess("¡Cuenta creada exitosamente!");
+      if (data.user) {
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("user", JSON.stringify(data.user));
+      }
 
-      // Redirigir al login después de 1.5 segundos
+      setSuccess("¡Cuenta creada exitosamente! Redirigiendo...");
+
       setTimeout(() => {
-        router.push("/login");
-      }, 1500);
+        router.push("/");
+      }, 1000);
     } catch (err) {
       setError("Error de conexión");
       console.error(err);
@@ -61,7 +65,7 @@ export default function Register() {
 
       {/* 📱 CONTENIDO */}
       <div className="relative z-10 flex flex-col items-center text-center px-6 py-12 w-full max-w-sm">
-        {/* 🧠 LOGO GRANDE */}
+        {/*  LOGO GRANDE */}
         <Image
           src="/Estoy contigo.png"
           alt="logo"
@@ -69,7 +73,7 @@ export default function Register() {
           height={400}
           className="mb-4 drop-shadow-xl"
         />
-        {/* ✍️ FORM */}
+        {/*  FORM */}
         <form onSubmit={handleRegister} className="w-full space-y-4">
           {error && (
             <div className="w-full bg-red-50/80 backdrop-blur-md border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm text-center shadow-sm animate-fadeIn">
@@ -107,7 +111,7 @@ export default function Register() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="w-full px-4 py-3 rounded-xl bg-white/70 backdrop-blur-md border border-white/30 focus:ring-2 focus:ring-green-400 focus:border-green-400 outline-none transition shadow-sm"
+            className="w-full px-4 py-3 rounded-xl bg-white/70 backdrop-blur-md border border-white/30 text-black placeholder:text-gray-500 focus:ring-2 focus:ring-green-300 outline-none"
           />
           <input
             type="password"
@@ -115,10 +119,10 @@ export default function Register() {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
-            className="w-full px-4 py-3 rounded-xl bg-white/70 backdrop-blur-md border border-white/30 focus:ring-2 focus:ring-green-300 outline-none"
+            className="w-full px-4 py-3 rounded-xl bg-white/70 backdrop-blur-md border border-white/30 text-black placeholder:text-gray-500 focus:ring-2 focus:ring-green-300 outline-none"
           />
 
-          {/* 🔘 BOTÓN */}
+          {/*  BOTÓN */}
           <button
             type="submit"
             disabled={loading}
@@ -127,7 +131,7 @@ export default function Register() {
             {loading ? "Creando..." : "Crear cuenta"}
           </button>
 
-          {/* 🔗 LOGIN */}
+          {/*  LOGIN */}
           <p className="text-sm text-gray-600">
             ¿Ya tienes cuenta?{" "}
             <button
