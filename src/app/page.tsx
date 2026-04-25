@@ -72,7 +72,7 @@ export default function Home() {
     <div className="min-h-screen bg-green-50 dark:bg-gray-950 transition-colors duration-300">
       <Header />
       <div className="mx-auto flex min-h-[calc(100vh-72px)] w-full max-w-7xl flex-col gap-6 px-4 pb-24 pt-4 md:flex-row md:items-start md:gap-8 md:px-6 lg:px-8">
-        <aside className="hidden md:block md:w-72 xl:w-80">
+        <aside className="hidden md:block md:w-64 xl:w-72">
           <div className="sticky top-4 space-y-4">
             <div className="rounded-[2rem] border border-gray-200 bg-white p-4 shadow-lg shadow-gray-200/40 transition-colors duration-300 dark:border-gray-700 dark:bg-gray-900 dark:shadow-black/20">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gray-500 dark:text-gray-400">
@@ -98,16 +98,6 @@ export default function Home() {
                   );
                 })}
               </div>
-            </div>
-
-            <div className="rounded-[2rem] border border-gray-200 bg-white p-4 shadow-lg shadow-gray-200/40 transition-colors duration-300 dark:border-gray-700 dark:bg-gray-900 dark:shadow-black/20">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gray-500 dark:text-gray-400">
-                Ajustes
-              </p>
-              <button className="mt-4 flex w-full items-center justify-between rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-700 transition-colors duration-300 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700">
-                <span>Preferencias</span>
-                <span className="text-green-600 dark:text-green-300">›</span>
-              </button>
             </div>
           </div>
         </aside>
