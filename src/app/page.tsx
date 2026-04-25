@@ -9,11 +9,6 @@ import DiaryTab from "../components/DiaryTab";
 import ToolsTab from "../components/ToolsTab";
 import ProfileTab from "../components/ProfileTab";
 
-interface Message {
-  role: "user" | "bot";
-  text: string;
-}
-
 export default function Home() {
   const [activeTab, setActiveTab] = useState("home");
   const router = useRouter();
