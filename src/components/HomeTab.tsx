@@ -37,7 +37,7 @@ export default function HomeTab() {
   ];
 
   return (
-    <div className="max-w-md mx-auto space-y-6">
+    <div className="w-full space-y-6">
       {/* Estado emocional */}
       <div className="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-lg transition-colors duration-300">
         <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">

@@ -62,7 +62,7 @@ export default function ChatTab() {
   };
 
   return (
-    <div className="max-w-md mx-auto h-full flex flex-col">
+    <div className="w-full h-full flex flex-col">
       <ChatWindow messages={messages} isTyping={isTyping} />
       <InputBox
         input={input}

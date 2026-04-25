@@ -12,7 +12,7 @@ export default function ProfileTab() {
   };
 
   return (
-    <div className="max-w-md mx-auto space-y-6">
+    <div className="w-full space-y-6">
       <div className="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-lg text-center transition-colors duration-300">
         <div className="w-20 h-20 bg-green-100 dark:bg-gray-700 rounded-full mx-auto mb-4 flex items-center justify-center transition-colors duration-300">
           <span className="text-3xl">👤</span>
