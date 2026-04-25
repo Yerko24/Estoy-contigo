@@ -1,7 +1,7 @@
 "use client";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Login() {
   const router = useRouter();
@@ -16,64 +16,63 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-green-100 via-green-50 to-white">
-      {/* 📱 CONTENEDOR */}
-      <div className="w-full max-w-md bg-white rounded-3xl shadow-xl overflow-hidden">
-        {/* 🌿 HEADER VISUAL */}
-        <div className="relative h-64 bg-gradient-to-b from-green-200 to-green-100 flex flex-col items-center justify-center">
-          {/* Fondo decorativo */}
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute bottom-0 w-full h-24 bg-green-300 rounded-t-[50%]" />
-          </div>
+    <div className="min-h-screen relative flex flex-col items-center justify-center overflow-hidden">
+      {/* 🌿 FONDO NATURAL */}
+      <div className="absolute inset-0 bg-gradient-to-b from-green-200 via-green-100 to-white" />
 
-          {/* Logo */}
-          <Image
-            src="/Estoy contigo.png"
-            alt="logo"
-            width={90}
-            height={90}
-            className="z-10"
-          />
+      {/* 🌿 EFECTO HOJAS / MANCHAS */}
+      <div className="absolute w-[600px] h-[600px] bg-green-300 opacity-20 blur-3xl rounded-full top-[-200px] left-[-200px]" />
+      <div className="absolute w-[500px] h-[500px] bg-green-400 opacity-10 blur-3xl rounded-full bottom-[-150px] right-[-150px]" />
 
-          <h1 className="text-2xl font-bold text-gray-800 mt-4 z-10">
-            Estoy contigo
-          </h1>
+      {/* 🌳 (opcional) overlay tipo naturaleza */}
+      <div className="absolute inset-0 opacity-10 bg-[url('/leaves.png')] bg-cover bg-center" />
 
-          <p className="text-green-700 text-sm z-10">
-            Aquí para escucharte, aquí para ti 💚
-          </p>
-        </div>
+      {/* 📱 CONTENIDO */}
+      <div className="relative z-10 flex flex-col items-center text-center px-6">
+        {/* 🧠 LOGO GRANDE */}
+        <Image
+          src="/Estoy contigo.png"
+          alt="logo"
+          width={120}
+          height={120}
+          className="mb-6"
+        />
 
-        {/* 🔐 CONTENIDO */}
-        <div className="p-6">
-          {/* BOTONES */}
+        <h1 className="text-4xl font-bold text-gray-800">Estoy contigo</h1>
+
+        <p className="text-green-700 mt-2 text-sm">
+          Aquí para escucharte, aquí para ti 💚
+        </p>
+
+        {/* BOTONES */}
+        <div className="w-full max-w-xs mt-10 space-y-4">
           <button
             onClick={handleLogin}
-            className="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-xl font-semibold shadow-md transition"
+            className="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-xl font-semibold shadow-xl transition"
           >
             {loading ? "Entrando..." : "Iniciar sesión"}
           </button>
 
           <button
             onClick={() => router.push("/register")}
-            className="w-full mt-3 border border-green-500 text-green-600 py-3 rounded-xl font-medium hover:bg-green-50 transition"
+            className="w-full border border-green-500 text-green-700 py-3 rounded-xl font-medium hover:bg-green-50 transition"
           >
             Crear cuenta
           </button>
+        </div>
 
-          {/* 🔒 SEGURIDAD */}
-          <div className="mt-6 bg-green-50 rounded-xl p-4 flex gap-3 items-start">
-            <div className="text-green-600 text-xl">🛡️</div>
+        {/* 🔒 SEGURIDAD */}
+        <div className="mt-8 bg-white/50 backdrop-blur-md px-4 py-3 rounded-xl flex items-start gap-3 max-w-xs">
+          <span className="text-green-600 text-lg">🛡️</span>
 
-            <div>
-              <p className="font-semibold text-gray-700 text-sm">
-                Tu espacio seguro
-              </p>
-              <p className="text-gray-500 text-xs">
-                Todo lo que hablas es confidencial y está pensado para tu
-                bienestar.
-              </p>
-            </div>
+          <div className="text-left">
+            <p className="text-sm font-semibold text-gray-700">
+              Tu espacio seguro
+            </p>
+            <p className="text-xs text-gray-600">
+              Todo lo que hablas es confidencial y está pensado para tu
+              bienestar.
+            </p>
           </div>
         </div>
       </div>
