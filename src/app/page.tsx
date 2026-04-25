@@ -74,7 +74,7 @@ export default function Home() {
       <div className="mx-auto flex min-h-[calc(100vh-72px)] w-full max-w-7xl flex-col gap-6 px-4 pb-24 pt-4 md:flex-row md:items-start md:gap-8 md:px-6 lg:px-8">
         <aside className="hidden md:block md:w-72 xl:w-80">
           <div className="sticky top-4 space-y-4">
-            <div className="rounded-3xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900/80 p-4 shadow-lg transition-colors duration-300">
+            <div className="rounded-[2rem] border border-gray-200 bg-white p-4 shadow-lg shadow-gray-200/40 transition-colors duration-300 dark:border-gray-700 dark:bg-gray-900 dark:shadow-black/20">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gray-500 dark:text-gray-400">
                 Navegación
               </p>
@@ -86,18 +86,28 @@ export default function Home() {
                     <button
                       key={tab.id}
                       onClick={() => setActiveTab(tab.id)}
-                      className={`flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-left transition-colors duration-300 ${
+                      className={`flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-left text-sm font-medium transition-all duration-300 ${
                         isActive
-                          ? "bg-green-50 text-green-700 dark:bg-green-900/40 dark:text-green-200"
+                          ? "bg-green-50 text-green-700 shadow-sm shadow-green-100 dark:bg-green-900/40 dark:text-green-200"
                           : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
                       }`}
                     >
                       <Icon className="w-5 h-5" />
-                      <span className="font-medium">{tab.label}</span>
+                      <span>{tab.label}</span>
                     </button>
                   );
                 })}
               </div>
+            </div>
+
+            <div className="rounded-[2rem] border border-gray-200 bg-white p-4 shadow-lg shadow-gray-200/40 transition-colors duration-300 dark:border-gray-700 dark:bg-gray-900 dark:shadow-black/20">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gray-500 dark:text-gray-400">
+                Ajustes
+              </p>
+              <button className="mt-4 flex w-full items-center justify-between rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-700 transition-colors duration-300 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700">
+                <span>Preferencias</span>
+                <span className="text-green-600 dark:text-green-300">›</span>
+              </button>
             </div>
           </div>
         </aside>
