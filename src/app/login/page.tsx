@@ -38,7 +38,7 @@ export default function Login() {
         />
 
         {/* BOTONES */}
-        <div className="w-full max-w-xs mt-10 space-y-4">
+        <div className="w-full max-w-xs -mt-10 space-y-4">
           <button
             onClick={handleLogin}
             className="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-xl font-semibold shadow-xl transition"
