@@ -1,10 +1,13 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Header from "../components/Header";
-import ChatWindow from "../components/ChatWindow";
-import InputBox from "../components/InputBox";
-import Footer from "../components/Footer";
-import { getBotResponse } from "../utils/chat";
+import BottomNav from "../components/BottomNav";
+import HomeTab from "../components/HomeTab";
+import ChatTab from "../components/ChatTab";
+import DiaryTab from "../components/DiaryTab";
+import ToolsTab from "../components/ToolsTab";
+import ProfileTab from "../components/ProfileTab";
 
 interface Message {
   role: "user" | "bot";
@@ -12,86 +15,38 @@ interface Message {
 }
 
 export default function Home() {
-  const [messages, setMessages] = useState<Message[]>(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("chatMessages");
-      return saved
-        ? JSON.parse(saved)
-        : [
-            {
-              role: "bot",
-              text: "Hola 💚 Estoy contigo. ¿Cómo te sientes hoy?",
-            },
-          ];
-    }
-    return [
-      {
-        role: "bot",
-        text: "Hola 💚 Estoy contigo. ¿Cómo te sientes hoy?",
-      },
-    ];
-  });
-  const [input, setInput] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
+  const [activeTab, setActiveTab] = useState("home");
+  const router = useRouter();
 
-  // Guardar mensajes en localStorage
   useEffect(() => {
-    localStorage.setItem("chatMessages", JSON.stringify(messages));
-  }, [messages]);
-
-  const sendMessage = async () => {
-    if (!input.trim()) return;
-
-    const userMsg: Message = { role: "user", text: input };
-    setMessages((prev) => [...prev, userMsg]);
-    setInput("");
-    setIsTyping(true);
-
-    try {
-      const botResponse = await getBotResponse(input);
-      setMessages((prev) => [...prev, { role: "bot", text: botResponse }]);
-    } catch {
-      setMessages((prev) => [
-        ...prev,
-        { role: "bot", text: "Lo siento, hubo un error. Inténtalo de nuevo." },
-      ]);
-    } finally {
-      setIsTyping(false);
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    if (!isLoggedIn) {
+      router.push("/login");
     }
-  };
+  }, [router]);
 
-  const handleEmotionSelect = (emotion: string) => {
-    setInput((prev) => prev + " " + emotion);
-  };
-
-  const clearChat = () => {
-    setMessages([
-      {
-        role: "bot",
-        text: "Hola 💚 Estoy contigo. ¿Cómo te sientes hoy?",
-      },
-    ]);
-    localStorage.removeItem("chatMessages");
+  const renderTab = () => {
+    switch (activeTab) {
+      case "home":
+        return <HomeTab />;
+      case "chat":
+        return <ChatTab />;
+      case "diary":
+        return <DiaryTab />;
+      case "tools":
+        return <ToolsTab />;
+      case "profile":
+        return <ProfileTab />;
+      default:
+        return <HomeTab />;
+    }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-50 to-blue-50 flex flex-col items-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100 flex flex-col">
       <Header />
-
-      {/* CHAT CONTAINER */}
-      <div className="w-full max-w-md flex flex-col flex-1 min-h-0">
-        <ChatWindow messages={messages} isTyping={isTyping} />
-
-        {/* INPUT */}
-        <InputBox
-          input={input}
-          setInput={setInput}
-          onSend={sendMessage}
-          onEmotionSelect={handleEmotionSelect}
-        />
-      </div>
-
-      <Footer onClearChat={clearChat} />
+      <main className="flex-1 p-4 pb-20">{renderTab()}</main>
+      <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} />
     </div>
   );
 }
