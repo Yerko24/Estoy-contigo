@@ -28,7 +28,7 @@ export default function Login() {
       <div className="absolute inset-0 opacity-10 bg-[url('/leaves.png')] bg-cover bg-center" />
 
       {/* 📱 CONTENIDO */}
-      <div className="relative z-10 flex flex-col items-center text-center px-6 py-8 bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl">
+      <div className="relative z-10 flex flex-col items-center text-center px-6 -mt-10">
         {/* 🧠 LOGO GRANDE */}
         <Image
           src="/Estoy contigo.png"
