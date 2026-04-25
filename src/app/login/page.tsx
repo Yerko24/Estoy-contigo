@@ -6,82 +6,112 @@ import Image from "next/image";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const router = useRouter();
 
   const handleLogin = () => {
-    // Simular login
-    localStorage.setItem("isLoggedIn", "true");
-    router.push("/");
+    setError("");
+
+    if (!email || !password) {
+      setError("Completa todos los campos");
+      return;
+    }
+
+    setLoading(true);
+
+    setTimeout(() => {
+      localStorage.setItem("isLoggedIn", "true");
+      setLoading(false);
+      router.push("/");
+    }, 1200);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100 flex items-center justify-center p-4">
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-green-200 rounded-full blur-xl"></div>
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-blue-200 rounded-full blur-xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-green-100 rounded-full blur-2xl"></div>
-      </div>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-100 via-white to-green-200 relative overflow-hidden">
+      {/* 🌿 Fondo premium */}
+      <div className="absolute w-[500px] h-[500px] bg-green-300 opacity-20 blur-3xl rounded-full top-[-150px] left-[-150px]" />
+      <div className="absolute w-[400px] h-[400px] bg-emerald-200 opacity-20 blur-3xl rounded-full bottom-[-100px] right-[-100px]" />
 
-      <div className="relative z-10 w-full max-w-md bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-8">
-        {/* Logo */}
+      {/* 🧾 Card */}
+      <div className="relative z-10 w-full max-w-md bg-white/70 backdrop-blur-xl border border-white/30 rounded-3xl shadow-2xl p-8">
+        {/* 🧠 Logo + título */}
         <div className="text-center mb-8">
-          <Image
-            src="/Estoy contigo.png"
-            alt="Estoy contigo Logo"
-            width={60}
-            height={60}
-            className="mx-auto mb-4 rounded-full"
-          />
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">
+          <div className="bg-white p-3 rounded-full shadow-md inline-block">
+            <Image src="/Estoy contigo.png" alt="logo" width={60} height={60} />
+          </div>
+
+          <h1 className="text-3xl font-bold text-gray-800 mt-4">
             Estoy contigo
           </h1>
-          <p className="text-gray-600">Tu compañero emocional</p>
+
+          <p className="text-gray-500 text-sm mt-1">Tu espacio seguro 💚</p>
         </div>
 
-        {/* Form */}
-        <div className="space-y-6">
+        {/* 📩 Formulario */}
+        <div className="space-y-5">
+          {/* EMAIL */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Email
-            </label>
+            <label className="text-sm text-gray-600">Email</label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 rounded-2xl border border-gray-200 focus:border-green-300 focus:outline-none transition-colors"
               placeholder="tu@email.com"
+              className="w-full mt-1 px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-green-300 outline-none transition"
             />
           </div>
 
+          {/* PASSWORD */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Contraseña
-            </label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-3 rounded-2xl border border-gray-200 focus:border-green-300 focus:outline-none transition-colors"
-              placeholder="••••••••"
-            />
+            <label className="text-sm text-gray-600">Contraseña</label>
+
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                className="w-full mt-1 px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-green-300 outline-none transition pr-12"
+              />
+
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"
+              >
+                {showPassword ? "Ocultar" : "Ver"}
+              </button>
+            </div>
           </div>
 
+          {/* ERROR */}
+          {error && <p className="text-red-500 text-sm">{error}</p>}
+
+          {/* BOTÓN */}
           <button
             onClick={handleLogin}
-            className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-2xl transition-colors shadow-lg"
+            disabled={loading}
+            className={`w-full py-3 rounded-xl text-white font-semibold transition ${
+              loading
+                ? "bg-green-300"
+                : "bg-green-500 hover:bg-green-600 shadow-lg"
+            }`}
           >
-            Iniciar sesión
+            {loading ? "Entrando..." : "Iniciar sesión"}
           </button>
 
-          <div className="text-center">
-            <a
-              href="/register"
-              className="text-green-600 hover:text-green-700 text-sm"
+          {/* LINK */}
+          <p className="text-center text-sm text-gray-500">
+            ¿No tienes cuenta?{" "}
+            <span
+              onClick={() => router.push("/register")}
+              className="text-green-600 cursor-pointer hover:underline"
             >
-              ¿No tienes cuenta? Crear cuenta
-            </a>
-          </div>
+              Crear cuenta
+            </span>
+          </p>
         </div>
       </div>
     </div>
