@@ -41,15 +41,15 @@ export default function ToolsTab() {
 
   return (
     <div className="max-w-md mx-auto space-y-6">
-      <div className="bg-white rounded-3xl p-6 shadow-lg">
-        <h2 className="text-xl font-semibold text-gray-800 mb-4">
+      <div className="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-lg transition-colors duration-300">
+        <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">
           Herramientas de bienestar
         </h2>
         <div className="grid grid-cols-1 gap-4">
           {tools.map((tool, index) => (
             <div
               key={index}
-              className="flex items-center p-4 bg-gray-50 rounded-2xl hover:bg-gray-100 transition-colors cursor-pointer"
+              className="flex items-center p-4 bg-gray-50 dark:bg-gray-700 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-300 cursor-pointer"
             >
               <div
                 className={`w-14 h-14 rounded-xl ${tool.color} flex items-center justify-center text-3xl mr-4`}
@@ -57,9 +57,13 @@ export default function ToolsTab() {
                 {tool.icon}
               </div>
               <div className="flex-1">
-                <h3 className="font-medium text-gray-800">{tool.title}</h3>
-                <p className="text-sm text-gray-600 mb-1">{tool.description}</p>
-                <span className="text-xs bg-white px-2 py-1 rounded-full text-gray-500">
+                <h3 className="font-medium text-gray-800 dark:text-gray-100">
+                  {tool.title}
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+                  {tool.description}
+                </p>
+                <span className="text-xs bg-white dark:bg-gray-600 px-2 py-1 rounded-full text-gray-500 dark:text-gray-300 transition-colors duration-300">
                   {tool.duration}
                 </span>
               </div>

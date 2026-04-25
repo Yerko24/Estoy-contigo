@@ -20,14 +20,25 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
     // Cargar tema guardado
     const savedTheme = localStorage.getItem("theme") as Theme;
+    let initialTheme: Theme = "light";
     if (savedTheme) {
-      setTheme(savedTheme);
+      initialTheme = savedTheme;
     } else {
       // Detectar preferencia del sistema
       const prefersDark = window.matchMedia(
         "(prefers-color-scheme: dark)",
       ).matches;
-      setTheme(prefersDark ? "dark" : "light");
+      initialTheme = prefersDark ? "dark" : "light";
+    }
+
+    setTheme(initialTheme);
+
+    // Aplicar clase inmediatamente
+    const root = document.documentElement;
+    if (initialTheme === "dark") {
+      root.classList.add("dark");
+    } else {
+      root.classList.remove("dark");
     }
   }, []);
 
