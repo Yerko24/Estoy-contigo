@@ -33,9 +33,9 @@ export default function Login() {
         <Image
           src="/Estoy contigo.png"
           alt="logo"
-          width={440}
-          height={440}
-          className="mb-4 drop-shadow-xl rounded-full shadow-lg"
+          width={400}
+          height={400}
+          className="mb-4 drop-shadow-xl  shadow-lg"
         />
 
         {/* BOTONES */}
