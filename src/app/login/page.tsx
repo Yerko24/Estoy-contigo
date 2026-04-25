@@ -4,114 +4,77 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = () => {
-    setError("");
-
-    if (!email || !password) {
-      setError("Completa todos los campos");
-      return;
-    }
-
     setLoading(true);
-
     setTimeout(() => {
       localStorage.setItem("isLoggedIn", "true");
-      setLoading(false);
       router.push("/");
     }, 1200);
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-100 via-white to-green-200 relative overflow-hidden">
-      {/* 🌿 Fondo premium */}
-      <div className="absolute w-[500px] h-[500px] bg-green-300 opacity-20 blur-3xl rounded-full top-[-150px] left-[-150px]" />
-      <div className="absolute w-[400px] h-[400px] bg-emerald-200 opacity-20 blur-3xl rounded-full bottom-[-100px] right-[-100px]" />
-
-      {/* 🧾 Card */}
-      <div className="relative z-10 w-full max-w-md bg-white/70 backdrop-blur-xl border border-white/30 rounded-3xl shadow-2xl p-8">
-        {/* 🧠 Logo + título */}
-        <div className="text-center mb-8">
-          <div className="bg-white p-3 rounded-full shadow-md inline-block">
-            <Image src="/Estoy contigo.png" alt="logo" width={60} height={60} />
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-green-100 via-green-50 to-white">
+      {/* 📱 CONTENEDOR */}
+      <div className="w-full max-w-md bg-white rounded-3xl shadow-xl overflow-hidden">
+        {/* 🌿 HEADER VISUAL */}
+        <div className="relative h-64 bg-gradient-to-b from-green-200 to-green-100 flex flex-col items-center justify-center">
+          {/* Fondo decorativo */}
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute bottom-0 w-full h-24 bg-green-300 rounded-t-[50%]" />
           </div>
 
-          <h1 className="text-3xl font-bold text-gray-800 mt-4">
+          {/* Logo */}
+          <Image
+            src="/Estoy contigo.png"
+            alt="logo"
+            width={90}
+            height={90}
+            className="z-10"
+          />
+
+          <h1 className="text-2xl font-bold text-gray-800 mt-4 z-10">
             Estoy contigo
           </h1>
 
-          <p className="text-gray-500 text-sm mt-1">Tu espacio seguro 💚</p>
+          <p className="text-green-700 text-sm z-10">
+            Aquí para escucharte, aquí para ti 💚
+          </p>
         </div>
 
-        {/* 📩 Formulario */}
-        <div className="space-y-5">
-          {/* EMAIL */}
-          <div>
-            <label className="text-sm text-gray-600">Email</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="tu@email.com"
-              className="w-full mt-1 px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-green-300 outline-none transition"
-            />
-          </div>
-
-          {/* PASSWORD */}
-          <div>
-            <label className="text-sm text-gray-600">Contraseña</label>
-
-            <div className="relative">
-              <input
-                type={showPassword ? "text" : "password"}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-                className="w-full mt-1 px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-green-300 outline-none transition pr-12"
-              />
-
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"
-              >
-                {showPassword ? "Ocultar" : "Ver"}
-              </button>
-            </div>
-          </div>
-
-          {/* ERROR */}
-          {error && <p className="text-red-500 text-sm">{error}</p>}
-
-          {/* BOTÓN */}
+        {/* 🔐 CONTENIDO */}
+        <div className="p-6">
+          {/* BOTONES */}
           <button
             onClick={handleLogin}
-            disabled={loading}
-            className={`w-full py-3 rounded-xl text-white font-semibold transition ${
-              loading
-                ? "bg-green-300"
-                : "bg-green-500 hover:bg-green-600 shadow-lg"
-            }`}
+            className="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-xl font-semibold shadow-md transition"
           >
             {loading ? "Entrando..." : "Iniciar sesión"}
           </button>
 
-          {/* LINK */}
-          <p className="text-center text-sm text-gray-500">
-            ¿No tienes cuenta?{" "}
-            <span
-              onClick={() => router.push("/register")}
-              className="text-green-600 cursor-pointer hover:underline"
-            >
-              Crear cuenta
-            </span>
-          </p>
+          <button
+            onClick={() => router.push("/register")}
+            className="w-full mt-3 border border-green-500 text-green-600 py-3 rounded-xl font-medium hover:bg-green-50 transition"
+          >
+            Crear cuenta
+          </button>
+
+          {/* 🔒 SEGURIDAD */}
+          <div className="mt-6 bg-green-50 rounded-xl p-4 flex gap-3 items-start">
+            <div className="text-green-600 text-xl">🛡️</div>
+
+            <div>
+              <p className="font-semibold text-gray-700 text-sm">
+                Tu espacio seguro
+              </p>
+              <p className="text-gray-500 text-xs">
+                Todo lo que hablas es confidencial y está pensado para tu
+                bienestar.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
