@@ -33,8 +33,8 @@ export default function Login() {
         <Image
           src="/Estoy contigo.png"
           alt="logo"
-          width={120}
-          height={120}
+          width={200}
+          height={200}
           className="mb-6"
         />
 
