@@ -2,12 +2,12 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Header from "../components/Header";
-import BottomNav from "../components/BottomNav";
-import HomeTab from "../components/HomeTab";
-import ChatTab from "../components/ChatTab";
-import DiaryTab from "../components/DiaryTab";
-import ToolsTab from "../components/ToolsTab";
-import ProfileTab from "../components/ProfileTab";
+import BottomNav from "@/components/BottomNav";
+import HomeTab from "@/components/HomeTab";
+import ChatTab from "@/components/ChatTab";
+import DiaryTab from "@/components/DiaryTab";
+import ToolsTab from "@/components/ToolsTab";
+import ProfileTab from "@/components/ProfileTab";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("home");
@@ -21,6 +21,7 @@ export default function Home() {
       router.push("/login");
       return;
     }
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsLoading(false);
   }, [router]);
 
